@@ -1,0 +1,24 @@
+name: bandart
+description: Implementation of Bandit Algorithms in Dart
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  grizzly_distuv: ^1.0.0
+  ml_dataframe: ^1.6.0
+  statistics: ^1.0.26
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
