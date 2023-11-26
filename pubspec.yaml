@@ -8,10 +8,11 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  calc: ^0.2.1
+  collection: ^1.17.0
+  data: ^0.11.0
   flutter:
     sdk: flutter
-  grizzly_distuv: ^1.0.0
-  ml_dataframe: ^1.6.0
   statistics: ^1.0.26
 
 dev_dependencies:

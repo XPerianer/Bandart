@@ -11,8 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Bandart (combination of "Bandits" and "Dart") is a library for bandit algorithms in Dart. It provides Bayesian Models for statistical analysis for the data.
 
 ## Features
 
@@ -33,6 +32,13 @@ const like = 'sample';
 ```
 
 ## Additional information
+
+### Development goals
+- Performance: Since Dart is most often used for mobile development, the goal of the library is to support calculations fast enough to run on smartphones.
+- Seedability: When seeded with the same seed, the library should always return the same result. 
+- Well tested
+- Extensible
+- 
 
 TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect

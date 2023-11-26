@@ -1,82 +1,65 @@
-import 'package:bandart/dataframe.dart';
+import 'package:bandart/models/sampling_model.dart';
 
-import 'package:grizzly_distuv/grizzly_distuv.dart';
+import 'package:data/data.dart';
 
-import 'dart:math';
-import 'model.dart';
-import 'package:statistics/statistics.dart';
+import 'package:bandart/helpers.dart' as helpers;
 
-int argMax(List<double> list) {
-  return list.asMap().entries.reduce((MapEntry<int, double> l, MapEntry<int, double> r) => l.value > r.value ? l : r).key;
-}
-class BetaModel implements Model {
-  DataFrame? _history;
-  int seed = 0;
+class BetaModel extends SamplingModel {
+  final double _a, _b;
+
+  BetaModel({required numberOfInterventions, required random, a = 1.0, b = 1.0, sampleSize = 5000}) :_a = a, _b = b, super(numberOfInterventions: numberOfInterventions, random: random, sampleSize: sampleSize);
 
   @override
-  List<double> approximateProbabilites(Map context) {
+  void sample([Map? context]) {
     double? averageRating;
 
-    if (_history?.shape[1] == 0) {
-      return [0.5, 0.5];
+    if (history == null) {
+      return;
+    }
+    if (history?.shape[1] == 0) {
+      return;
     }
 
-    averageRating = _history?["outcome"].mean;
-    if (averageRating == null) {
-      return [0.5, 0.5];
+    var outcomes = history!["outcome"];
+    if (outcomes.isEmpty) {
+      return;
     }
+    averageRating = helpers.mean(history!["outcome"]);
     // Model Code inspired by Self-E Implementation https://github.com/brownhci/self-e/blob/master/lib/backend/data.dart
-    final grouped_by_intervention =
-        _history?.groupBy("intervention", "outcome");
-    final parameters_by_intervention = [];
+    final groupedByIntervention =
+        history?.groupBy("intervention", "outcome");
+    final parametersByIntervention = [];
     for (int intervention = 0;
         intervention < numberOfInterventions;
         intervention++) {
-      int numberOfSucesses = grouped_by_intervention![intervention]!
+      int numberOfSucesses = groupedByIntervention![intervention]!
           .where((outcome) => outcome >= averageRating!)
           .length;
       int numberOfFailures =
-          grouped_by_intervention[intervention]!.length - numberOfSucesses;
-      parameters_by_intervention.add([numberOfSucesses, numberOfFailures]);
+          groupedByIntervention[intervention]!.length - numberOfSucesses;
+      parametersByIntervention.add([numberOfSucesses, numberOfFailures]);
     }
 
     var betas = [];
-    for (var parameters in parameters_by_intervention) {
+    for (var parameters in parametersByIntervention) {
       final alpha = parameters[0];
       final beta = parameters[1];
-      betas.add(Beta(alpha.toDouble() + 1, beta.toDouble() + 1));
+      betas.add([alpha.toDouble() + _a, beta.toDouble() + _b]);
     }
 
-    int trials = 40000;
-    Random s = Random(seed);
-    List<double> winningCounts = List.filled(numberOfInterventions, 0.0);
-    for (int i = 0; i < trials; i++) {
-      List<double> sampledValues = [];
-      for (int intervention = 0;
-          intervention < numberOfInterventions;
-          intervention++) {
-        final beta = betas[intervention];
-        double randomExperimentValue = beta.ppf(s.nextDouble());
-        sampledValues.add(randomExperimentValue);
+    List<List<double>> sampledValues = [];
+    for (int intervention = 0;
+        intervention < numberOfInterventions;
+        intervention++) {
+      sampledValues.add([]);
+      final beta = betas[intervention];
+      for (int i = 0; i < sampleSize; i++) {
+        double randomExperimentValue =
+            ibetaInv(random.nextDouble(), beta[0], beta[1]);
+        sampledValues[intervention].add(randomExperimentValue);
       }
-      winningCounts[argMax(sampledValues)] += 1;
     }
-    // do the winning percentage calculation
-    return winningCounts.map((e) => e / trials).toList();
-  }
 
-  @override
-  List<double> meanInterventionEffect() {
-    return [0.3, 0.5];
-  }
-
-  BetaModel(this.numberOfInterventions);
-
-  @override
-  int numberOfInterventions;
-
-  @override
-  set history(DataFrame newHistory) {
-    _history = newHistory;
+    samples = sampledValues;
   }
 }

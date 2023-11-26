@@ -1,6 +1,6 @@
+import 'package:bandart/dataframe.dart';
 import 'package:bandart/exceptions.dart';
 import 'package:bandart/policies/policy.dart';
-import 'package:ml_dataframe/ml_dataframe.dart';
 
 class FixedPolicy implements Policy{
   final int numberOfInterventions;

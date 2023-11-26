@@ -1,4 +1,6 @@
-bool listAlmostEquals<T>(List<num>? a, List<num>? b, epsilon) {
+import 'package:bandart/dataframe.dart';
+
+bool listAlmostEquals<T extends num>(List<T>? a, List<T>? b, epsilon) {
   if (a == null) {
     return b == null;
   }
@@ -14,4 +16,17 @@ bool listAlmostEquals<T>(List<num>? a, List<num>? b, epsilon) {
     }
   }
   return true;
+}
+
+
+DataFrame createDataFrame(Map<int, List<double>> interventionToOutcomes) {
+  List<int> interventionSeries = [];
+  List<double> outcomeSeries = [];
+  interventionToOutcomes.forEach((intervention, outcomes) {
+    for (var outcome in outcomes) {
+      interventionSeries.add(intervention);
+      outcomeSeries.add(outcome);
+    }
+  });
+  return DataFrame({'intervention': interventionSeries, 'outcome': outcomeSeries});
 }
