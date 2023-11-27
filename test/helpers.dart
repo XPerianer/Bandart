@@ -18,7 +18,6 @@ bool listAlmostEquals<T extends num>(List<T>? a, List<T>? b, epsilon) {
   return true;
 }
 
-
 DataFrame createDataFrame(Map<int, List<double>> interventionToOutcomes) {
   List<int> interventionSeries = [];
   List<double> outcomeSeries = [];
@@ -28,5 +27,6 @@ DataFrame createDataFrame(Map<int, List<double>> interventionToOutcomes) {
       outcomeSeries.add(outcome);
     }
   });
-  return DataFrame({'intervention': interventionSeries, 'outcome': outcomeSeries});
+  return DataFrame(
+      {'intervention': interventionSeries, 'outcome': outcomeSeries});
 }

@@ -7,7 +7,18 @@ import 'package:bandart/helpers.dart' as helpers;
 class BetaModel extends SamplingModel {
   final double _a, _b;
 
-  BetaModel({required numberOfInterventions, required random, a = 1.0, b = 1.0, sampleSize = 5000}) :_a = a, _b = b, super(numberOfInterventions: numberOfInterventions, random: random, sampleSize: sampleSize);
+  BetaModel(
+      {required numberOfInterventions,
+      required random,
+      a = 1.0,
+      b = 1.0,
+      sampleSize = 5000})
+      : _a = a,
+        _b = b,
+        super(
+            numberOfInterventions: numberOfInterventions,
+            random: random,
+            sampleSize: sampleSize);
 
   @override
   void sample([Map? context]) {
@@ -26,8 +37,7 @@ class BetaModel extends SamplingModel {
     }
     averageRating = helpers.mean(history!["outcome"]);
     // Model Code inspired by Self-E Implementation https://github.com/brownhci/self-e/blob/master/lib/backend/data.dart
-    final groupedByIntervention =
-        history?.groupBy("intervention", "outcome");
+    final groupedByIntervention = history?.groupBy("intervention", "outcome");
     final parametersByIntervention = [];
     for (int intervention = 0;
         intervention < numberOfInterventions;

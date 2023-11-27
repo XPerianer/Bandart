@@ -9,7 +9,10 @@ abstract class SamplingModel extends Model {
   int sampleSize;
   List<List<double>> _samples = [];
 
-  SamplingModel({required numberOfInterventions, required this.random, this.sampleSize = 5000})
+  SamplingModel(
+      {required numberOfInterventions,
+      required this.random,
+      this.sampleSize = 5000})
       : super(numberOfInterventions);
 
   get samples => _samples;
@@ -39,9 +42,11 @@ abstract class SamplingModel extends Model {
   List<double> maxProbabilities() {
     return getSampleProbabilities(max: true);
   }
+
   List<double> minProbabilities() {
     return getSampleProbabilities(max: false);
   }
+
   List<double> interventionMeans() {
     List<double> meanInterventionEffect = [];
     for (int intervention = 0;
@@ -51,5 +56,4 @@ abstract class SamplingModel extends Model {
     }
     return meanInterventionEffect;
   }
-
 }

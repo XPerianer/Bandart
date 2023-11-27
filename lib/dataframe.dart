@@ -1,6 +1,6 @@
 class DataFrame {
   Map data;
-  
+
   DataFrame(this.data);
 
   get shape => [data.length, data.values.first.length];
@@ -21,5 +21,4 @@ class DataFrame {
     }
     return values;
   }
-
 }

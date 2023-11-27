@@ -2,7 +2,7 @@ import 'package:bandart/dataframe.dart';
 import 'package:bandart/exceptions.dart';
 import 'package:bandart/policies/policy.dart';
 
-class FixedPolicy implements Policy{
+class FixedPolicy implements Policy {
   final int numberOfInterventions;
 
   FixedPolicy(this.numberOfInterventions);
