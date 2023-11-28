@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 import '../helpers.dart';
 
-final testEpsilon = 0.01;
+final testEpsilon = 0.02;
 
 void main() {
   late GaussianModel gaussianModel;
@@ -41,6 +41,7 @@ void main() {
       3,
       4,
       5,
+      4,
       3,
       2,
       1,

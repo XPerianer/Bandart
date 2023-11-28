@@ -22,7 +22,7 @@ class GaussianModel extends SamplingModel {
       required mean,
       required l,
       required random,
-      sampleSize = 5000,
+      sampleSize = 10000,
       alpha = 1.0,
       beta = 1.0})
       : _l = l,
