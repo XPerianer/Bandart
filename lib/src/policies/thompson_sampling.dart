@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:bandart/bandart.dart';
-import 'package:bandart/src/helpers.dart';
+import 'package:bandart/helpers.dart';
 
 class ThompsonSampling implements Policy {
   final SamplingModel model;

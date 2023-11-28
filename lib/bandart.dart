@@ -10,5 +10,3 @@ export 'src/models/gaussian.dart' show GaussianModel;
 export 'src/policies/policy.dart' show Policy;
 export 'src/policies/fixed_policy.dart' show FixedPolicy;
 export 'src/policies/thompson_sampling.dart' show ThompsonSampling;
-
-export 'src/helpers.dart' show weightedRandom;
