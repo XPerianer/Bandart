@@ -72,5 +72,4 @@ jobs:
     - name: Upload coverage
       uses: coverallsapp/github-action@master
       with:
-        github-token: ${{ secrets.CODECOV_TOKEN }}
         path-to-lcov: coverage/lcov.info

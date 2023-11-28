@@ -12,6 +12,7 @@ and the Flutter guide for
 -->
 
 [![Dart CI](https://github.com/XPerianer/Bandart/actions/workflows/test-package.yml/badge.svg)](https://github.com/XPerianer/Bandart/actions/workflows/test-package.yml)
+[![Coverage Status](https://coveralls.io/repos/github/XPerianer/Bandart/badge.svg?branch=main)](https://coveralls.io/github/XPerianer/Bandart?branch=main)
 
 Bandart (combination of "Bandits" and "Dart") is a library for bandit algorithms in Dart.
 It provides Bayesian Models for statistical analysis for the data.
