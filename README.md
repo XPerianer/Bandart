@@ -13,7 +13,8 @@ and the Flutter guide for
 
 [![Dart CI](https://github.com/XPerianer/Bandart/actions/workflows/test-package.yml/badge.svg)](https://github.com/XPerianer/Bandart/actions/workflows/test-package.yml)
 
-Bandart (combination of "Bandits" and "Dart") is a library for bandit algorithms in Dart. It provides Bayesian Models for statistical analysis for the data.
+Bandart (combination of "Bandits" and "Dart") is a library for bandit algorithms in Dart.
+It provides Bayesian Models for statistical analysis for the data.
 
 ## Features
 - Bandit algorithms:
@@ -22,6 +23,7 @@ Bandart (combination of "Bandits" and "Dart") is a library for bandit algorithms
 - Bayesian Models:
   - Beta Model: Approximating success probability using Beta Distributions
   - Gaussian Model: Approximating mean and variance using conjugate priors
+
 
 
 ## Getting started
@@ -63,7 +65,6 @@ gaussianModel.history = history
 // Update the samples
 gaussianModel.sample()
 
-// Look at the results
 print(gaussianModel.maxProbabilities())
 // Prints around [0.2, 0.8]
 ```
@@ -82,8 +83,8 @@ var gaussianModel = GaussianModel(
 
 var policy = ThompsonSampling(numberOfInterventions: 2);
 
-// Prints either 0 or 1 (randomized), but will more often pick 1 as this is the intervention with the better history
 print(policy.choseAction({}, history));
+// Prints either 0 or 1 (randomized), but will more often pick 1 as this is the intervention with the better history
 
 ```
 
@@ -100,9 +101,4 @@ To update the mock code, run ```dart run build_runner build```.
 - Performance: Since Dart is most often used for mobile development, the goal of the library is to support calculations fast enough to run on smartphones.
 - Seedability: When seeded with the same seed, the library should always return the same result. 
 - Well tested
-- Extensible
-- 
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.

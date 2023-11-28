@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 
+/// Returns the index of the largest element in the list
 int argMax<T extends num>(List<T> list) {
   return list
       .asMap()

@@ -1,3 +1,4 @@
+/// Library for Bandit Algorithms with underlying Bayesian Models
 library bandart;
 
 export 'src/dataframe.dart' show DataFrame;
