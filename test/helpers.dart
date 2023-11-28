@@ -1,4 +1,4 @@
-import 'package:bandart/dataframe.dart';
+import 'package:bandart/bandart.dart';
 
 bool listAlmostEquals<T extends num>(List<T>? a, List<T>? b, epsilon) {
   if (a == null) {

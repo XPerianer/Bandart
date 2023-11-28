@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:bandart/models/gaussian.dart';
+import 'package:bandart/bandart.dart';
 import 'package:test/test.dart';
 
 import '../helpers.dart';
@@ -14,6 +14,25 @@ void main() {
         gaussianModel = GaussianModel(
             numberOfInterventions: 2, mean: 1.0, l: 1.0, random: Random(0))
       });
+
+  test('Example from the README', () {
+    var history = DataFrame({
+      'intervention': [0, 0, 1, 1],
+      'outcome': [1.0, 1.0, 2.0, 2.0]
+    });
+
+    var gaussianModel = GaussianModel(
+        numberOfInterventions: 2, mean: 1.0, l: 1.0, random: Random(0));
+
+    gaussianModel.history = history;
+
+    // Update the samples
+    gaussianModel.sample();
+
+    // Look at the results
+    expect(listAlmostEquals(gaussianModel.maxProbabilities(), [0.2, 0.8], 0.05),
+        true);
+  });
 
   test('Equal outcomes should lead to around 50% chance', () {
     final List<double> outcomes = [
@@ -35,6 +54,7 @@ void main() {
       1
     ];
     gaussianModel.history = createDataFrame({0: outcomes, 1: outcomes});
+    gaussianModel.sample();
     expect(
         listAlmostEquals(
             gaussianModel.maxProbabilities(), [0.5, 0.5], testEpsilon),

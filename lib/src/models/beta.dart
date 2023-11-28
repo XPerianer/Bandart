@@ -1,9 +1,14 @@
-import 'package:bandart/models/sampling_model.dart';
+import 'package:bandart/bandart.dart';
 
 import 'package:data/data.dart';
 
-import 'package:bandart/helpers.dart' as helpers;
+import 'package:bandart/src/helpers.dart' as helpers;
 
+/// BetaModel is a SamplingModel that models the data under each intervention after a Beta distribution.
+///
+/// Each Beta Variable models the probability of an intervention beeing a success.
+/// A success is defined as an outcome that is greater than the average outcome.
+/// For example if the outcomes for an intervention are [1, 2, 3], then the average outcome is 2, and the last two outcomes are successes.
 class BetaModel extends SamplingModel {
   final double _a, _b;
 

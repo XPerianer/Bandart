@@ -1,12 +1,22 @@
-import 'package:bandart/helpers.dart' as helpers;
-import 'package:bandart/models/sampling_model.dart';
+import 'package:bandart/src/helpers.dart' as helpers;
+import 'package:bandart/src/models/sampling_model.dart';
 
 import 'package:data/data.dart';
 
 import 'dart:math';
 
+/// GaussianModel is a SamplingModel that models the data under each intervention after a Gaussian distribution with unknown mean and variance
+///
+/// The model is based on the Normal-Inverse-Gamma distribution.
+/// See https://en.wikipedia.org/wiki/Normal-inverse-gamma_distribution for details.
+/// The formulas used to update the priors can be found under https://en.wikipedia.org/wiki/Conjugate_prior
+/// under "Normal with unkown mean and variance"
 class GaussianModel extends SamplingModel {
   final double _mean, _l, _alpha, _beta;
+
+  /// Initalizes a GaussianModel
+  ///
+  /// mean, l, alpha, beta are the priors for the Normal-Inverse-Gamma distribution.
   GaussianModel(
       {required numberOfInterventions,
       required mean,
@@ -102,8 +112,6 @@ class GaussianModel extends SamplingModel {
 
   @override
   void sample([Map? context]) {
-    // Calculate posterior parameters
-    // See https://en.wikipedia.org/wiki/Conjugate_prior and then Normal with unkown mean and variance
     List<double> mean = [], l = [], beta = [], alpha = [];
 
     for (int intervention = 0;

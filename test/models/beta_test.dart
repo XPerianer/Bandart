@@ -1,8 +1,6 @@
 import 'dart:math';
 
-import 'package:bandart/models/beta.dart';
-import 'package:bandart/dataframe.dart';
-import 'package:bandart/models/sampling_model.dart';
+import 'package:bandart/bandart.dart';
 import 'package:test/test.dart';
 
 import '../helpers.dart';

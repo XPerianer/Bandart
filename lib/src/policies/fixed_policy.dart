@@ -1,7 +1,9 @@
-import 'package:bandart/dataframe.dart';
-import 'package:bandart/exceptions.dart';
-import 'package:bandart/policies/policy.dart';
+import 'package:bandart/src/exceptions.dart';
+import 'package:bandart/bandart.dart';
 
+/// FixedPolicy implements a fixed schedule that repeats the sequence of increasing interventions.
+///
+/// Example: If numberOfInterventions is 3, then the sequence of interventions will be 0, 1, 2, 0, 1, 2, ...
 class FixedPolicy implements Policy {
   final int numberOfInterventions;
 
