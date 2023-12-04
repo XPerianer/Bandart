@@ -9,7 +9,7 @@ environment:
 dependencies:
   calc: ^0.2.1
   collection: ^1.17.0
-  data: '>=0.11.0'
+  data: '^0.11.0'
   statistics: ^1.0.26
 
 dev_dependencies: 
