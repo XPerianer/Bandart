@@ -37,11 +37,11 @@ void main() {
   });
 
   // Usually, new outcomes are measured outside, like click rates in an AB testing. For simplicity, we just use some random numbers here.
-  final new_outcomes_for_interventions = [0.3, 0.9];
+  final newOutcomesForInterventions = [0.3, 0.9];
   for (int i = 0; i < 10; i++) {
     // Select which action to chose:
     var intervention = policy.choseAction({}, history);
-    var outcome = new_outcomes_for_interventions[intervention];
+    var outcome = newOutcomesForInterventions[intervention];
 
     // Add datapoint
     history['intervention'].add(intervention);
