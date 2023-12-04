@@ -1,7 +1,7 @@
 name: bandart
-description: Implementation of Bandit Algorithms in Dart
+description: Bandart (combination of "Bandits" and "Dart") is a library for bandit algorithms in Dart. It provides Bayesian Models for statistical analysis for the data.. 
 version: 0.1.0
-homepage: http://dominikmeier.io
+homepage: https://dominikmeier.io
 
 environment:
   sdk: '>=2.19.6 < 4.0.0'
@@ -9,7 +9,7 @@ environment:
 dependencies:
   calc: ^0.2.1
   collection: ^1.17.0
-  data: ^0.11.0
+  data: '>=0.11.0'
   statistics: ^1.0.26
 
 dev_dependencies: 
